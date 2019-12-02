@@ -7,7 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/tsc",
+    "start": "./node_modules/.bin/ts-node src/server.ts",
+    "dev": "",
+    "pop": ""
   },
   "repository": {
     "type": "git",
@@ -18,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/MarvinMartin24/Asynchronous-Server-Project/issues"
   },
-  "homepage": "https://github.com/MarvinMartin24/Asynchronous-Server-Project#readme"
+  "homepage": "https://github.com/MarvinMartin24/Asynchronous-Server-Project#readme",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
 }
