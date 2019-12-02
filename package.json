@@ -2,7 +2,7 @@
   "name": "asynchronous-server-project",
   "version": "1.0.0",
   "description": "Web Technologies Final Project - Marvin Martin, Descottes Martin",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "test": "tests"
   },
