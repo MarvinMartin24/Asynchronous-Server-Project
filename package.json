@@ -1,7 +1,7 @@
 {
   "name": "asynchronous-server-project",
   "version": "1.0.0",
-  "description": "Web Technologies Final Project - Marvin Martin",
+  "description": "Web Technologies Final Project - Marvin Martin, Descottes Martin",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/MarvinMartin24/Asynchronous-Server-Project.git"
   },
-  "author": "MARTIN Martin",
+  "author": "MARTIN Martin - DESCOTTES Martin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MarvinMartin24/Asynchronous-Server-Project/issues"
