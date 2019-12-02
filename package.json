@@ -1,11 +1,8 @@
 {
   "name": "asynchronous-server-project",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Web Technologies Final Project - Marvin Martin, Descottes Martin",
   "main": "app.js",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/tsc",
@@ -17,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/MarvinMartin24/Asynchronous-Server-Project.git"
   },
-  "author": "MARTIN Martin - DESCOTTES Martin",
+  "author": "MARTIN Marvin - DESCOTTES Martin",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MarvinMartin24/Asynchronous-Server-Project/issues"
