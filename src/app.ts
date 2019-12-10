@@ -5,37 +5,38 @@ var mongodb = require('mongodb');
 var app = express();
 
 var MongoClient = require('mongodb').MongoClient;
-var db;
 
-// // Initialize connection once
-// MongoClient.connect("mongodb://localhost:27017/App", function(err, database) {
-//   if(err) throw err;
-//   db = database;
-// });
-//
-//
-// // Reuse database object in request handlers
-// app.get("/", function(req, res) {
-//   db.collection("User").find({}, function(err, docs) {
-//     docs.each(function(err, doc) {
-//       if(doc) {
-//         console.log(doc);
-//       }
-//       else {
-//         res.end();
-//       }
-//     });
-//   });
-// });
+
+
+
+// Reuse database object in request handlers
+app.get("/", function(req, res) {
+
+    // Initialize connection once
+    MongoClient.connect("mongodb://mongo:27017/app", (err, client) => {
+        if(err) throw err;
+        var db = client.db('app');
+        var coll = db.collection('users');
+        console.log('----- connected');
+        coll.find({}).toArray(function (err, result) {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(result);
+                res.send(JSON.stringify(result));
+            }
+        })
+    });
+});
 
 
 app.set('view engine','ejs');
 app.set('views', __dirname + "/view")
 
 
-app.get('/', (req: any, res: any) => {
-  res.render('hello.ejs')
-})
+// app.get('/', (req: any, res: any) => {
+//   res.render('hello.ejs')
+// })
 
 app.use((req: any, res: any) => {
   res.status(404).send('Error 404');

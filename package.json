@@ -27,7 +27,6 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "@types/mongoose": "^5.5.32",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "mongodb": "^3.4.0",
