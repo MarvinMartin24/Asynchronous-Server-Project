@@ -1,6 +1,7 @@
 const mongodb = require('mongodb');
 
-var db;
+var mydb;
+var myclient;
 
 export function connect(
     callback: (error: Error | null, result: any) => void
@@ -9,12 +10,17 @@ export function connect(
         if (err) {
             callback(err, null)
         } else {
-            db = client.db("app");
-            callback(null, db);
+            myclient = client;
+            mydb = client.db("app");
+            callback(null, mydb);
         }
     })
 }
 
+export function close(){
+    myclient.close();
+}
+
 export function getDb() {
-    return db;
+    return mydb;
 }

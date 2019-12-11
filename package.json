@@ -8,7 +8,7 @@
     "build": "./node_modules/.bin/tsc",
     "start": "./node_modules/.bin/ts-node src/app.ts",
     "dev": "./node_modules/.bin/nodemon",
-    "pop": ""
+    "populate": "tsc && ./node_modules/.bin/ts-node src/bin/populate.ts"
   },
   "repository": {
     "type": "git",

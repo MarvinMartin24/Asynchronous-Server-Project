@@ -8,7 +8,6 @@ const port: string = process.env.PORT || '3000'
 
 // Initiating Connection
 mongodb.connect(function(err, db) {
-
     if (err) throw err;
     app.set('view engine','ejs');
     app.set('views', __dirname + "/view")
@@ -29,7 +28,6 @@ mongodb.connect(function(err, db) {
         } else {
           res.status(404).json({error: 'not found'});
           res.end()
-
         }
       })
     });

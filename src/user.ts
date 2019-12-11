@@ -15,4 +15,12 @@ export function getUser(first_name: string, cb:(err, user?:User) => void) {
         if (err) return cb(err);
         return cb(null, user);
     })
-  }
+}
+
+export function addUsers(users, cb:(err, users) => void) {
+    db.getDb().collection('users').insertMany(users, function(err, res) {
+        if (err) throw err;
+        console.log(res.insertedCount+" documents inserted");
+        return cb(null, res);
+    });
+}
