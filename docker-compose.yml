@@ -5,10 +5,12 @@ services:
         container_name: app
         restart: always
         build:
-         context: .
-         dockerfile: Dockerfile
+            context: .
+            dockerfile: Dockerfile
         environment:
             - PORT=3000
+        volumes:
+            - "./src:/usr/app/src"
         ports:
             - "3000:3000"
         links:
@@ -18,8 +20,6 @@ services:
     mongo:
         container_name: mongo
         image: mongo
-        volumes:
-          - ./data:/data/db
         ports:
           - "27017:27017"
         networks:

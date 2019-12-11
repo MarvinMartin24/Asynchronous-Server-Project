@@ -11,6 +11,7 @@ RUN npm install
 
 # Bundle app source
 COPY ./src ./src
+VOLUME ["/usr/app/src"]
 
 
 EXPOSE 3000

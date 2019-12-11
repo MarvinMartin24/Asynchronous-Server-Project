@@ -1,50 +1,48 @@
-const PORT = process.env.PORT || 3000;
+import mongodb = require("./dbUtils")
+import userdb = require("./user")
 
-var express = require("express");
-var mongodb = require('mongodb');
-var app = express();
+const express = require('express')
+const bodyparser = require('body-parser')
+const app = express()
+const port: string = process.env.PORT || '3000'
 
-var MongoClient = require('mongodb').MongoClient;
+// Initiating Connection
+mongodb.connect(function(err, db) {
 
+    if (err) throw err;
+    app.set('view engine','ejs');
+    app.set('views', __dirname + "/view")
 
+    app.use(bodyparser.json())
+    app.use(bodyparser.urlencoded())
 
+    app.get('/', (req: any, res: any) => {
+      res.render('hello.ejs')
+    })
 
-// Reuse database object in request handlers
-app.get("/", function(req, res) {
+    app.get('/user/:first_name', (req: any, res: any) => {
+      userdb.getUser(req.params.first_name, (err, user:userdb.User) => {
+        if (user) {
+          console.log(user)
+          res.status(200).send(JSON.stringify(user))
+          res.end()
+        } else {
+          res.status(404).json({error: 'not found'});
+          res.end()
 
-    // Initialize connection once
-    MongoClient.connect("mongodb://mongo:27017/app", (err, client) => {
-        if(err) throw err;
-        var db = client.db('app');
-        var coll = db.collection('users');
-        console.log('----- connected');
-        coll.find({}).toArray(function (err, result) {
-            if (err) {
-                res.send(err);
-            } else {
-                console.log(result);
-                res.send(JSON.stringify(result));
-            }
-        })
+        }
+      })
     });
+
+    app.use((req: any, res: any) => {
+      res.status(404).send('Error 404');
+    });
+
+    app.listen(port, (err: Error) => {
+      if (err) {
+        throw err
+      }
+      console.log(`server is listening on port ${port}`)
+    })
+
 });
-
-
-app.set('view engine','ejs');
-app.set('views', __dirname + "/view")
-
-
-// app.get('/', (req: any, res: any) => {
-//   res.render('hello.ejs')
-// })
-
-app.use((req: any, res: any) => {
-  res.status(404).send('Error 404');
-});
-
-app.listen(PORT, (err: Error) => {
-  if (err) {
-    throw err
-  }
-  console.log(`server is listening on port ${PORT}`)
-})
