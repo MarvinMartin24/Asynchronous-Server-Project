@@ -12,3 +12,5 @@ typings/
 
 # Optional npm cache directory
 .npm
+
+.key

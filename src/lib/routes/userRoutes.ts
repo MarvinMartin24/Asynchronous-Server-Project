@@ -15,18 +15,22 @@ export class Routes {
              res.render('hello.ejs')
         })
 
-        // Contact
+        // Users
         app.route('/users')
-        .get(this.userController.getUsers)
+        .get(this.userController.getAllUsers);
 
-        // POST endpoint
+        app.route('/user/:email')
+        .get(this.userController.getUserWithEmail)
+
+        app.route('/user/register')
         .post(this.userController.addUser);
 
-        // Contact detail
-        app.route('/user/:email')
+        app.route('/user/authenticate')
+        .post(this.userController.authenticate);
 
-        // get specific contact
-        .get(this.userController.getUserWithEmail)
+        app.route('/user/me')
+        .post(this.userController.validateUser, this.userController.getUserbyId);
+
         // .put(this.userController.updateContact)
         // .delete(this.userController.deleteContact)
 

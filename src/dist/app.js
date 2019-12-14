@@ -20,6 +20,7 @@ var App = /** @class */ (function () {
     App.prototype.config = function () {
         this.app.use(body_parser_1.default.json());
         this.app.use(body_parser_1.default.urlencoded({ extended: false }));
+        this.app.set('secretKey', 'nodeRestApi-ECE'); // jwt secret token
     };
     App.prototype.mongoSetup = function () {
         mongoose_1.default.Promise = global.Promise;

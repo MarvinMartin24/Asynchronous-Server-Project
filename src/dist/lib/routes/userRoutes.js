@@ -12,15 +12,17 @@ var Routes = /** @class */ (function () {
             .get(function (req, res) {
             res.render('hello.ejs');
         });
-        // Contact
+        // Users
         app.route('/users')
-            .get(this.userController.getUsers)
-            // POST endpoint
-            .post(this.userController.addUser);
-        // Contact detail
+            .get(this.userController.getAllUsers);
         app.route('/user/:email')
-            // get specific contact
             .get(this.userController.getUserWithEmail);
+        app.route('/user/register')
+            .post(this.userController.addUser);
+        app.route('/user/authenticate')
+            .post(this.userController.authenticate);
+        app.route('/user/me')
+            .post(this.userController.validateUser, this.userController.getUserbyId);
         // .put(this.userController.updateContact)
         // .delete(this.userController.deleteContact)
     };
