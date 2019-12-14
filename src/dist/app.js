@@ -1,18 +1,29 @@
 "use strict";
-var PORT = process.env.PORT || 3000;
-var express = require("express");
-var app = express();
-app.set('view engine', 'ejs');
-app.set('views', __dirname + "/../view");
-app.get('/', function (req, res) {
-    res.render('hello.ejs');
-});
-app.use(function (req, res) {
-    res.status(404).send('Error 404');
-});
-app.listen(PORT, function (err) {
-    if (err) {
-        throw err;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(require("express"));
+var body_parser_1 = __importDefault(require("body-parser"));
+var userRoutes_1 = require("./lib/routes/userRoutes");
+var mongoose_1 = __importDefault(require("mongoose"));
+var App = /** @class */ (function () {
+    function App() {
+        this.app = express_1.default();
+        this.routePrv = new userRoutes_1.Routes();
+        this.mongoUrl = 'mongodb://mongo:27017/app';
+        this.config();
+        this.mongoSetup();
+        this.routePrv.routes(this.app);
     }
-    console.log("server is listening on port " + PORT);
-});
+    App.prototype.config = function () {
+        this.app.use(body_parser_1.default.json());
+        this.app.use(body_parser_1.default.urlencoded({ extended: false }));
+    };
+    App.prototype.mongoSetup = function () {
+        mongoose_1.default.Promise = global.Promise;
+        mongoose_1.default.connect(this.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    };
+    return App;
+}());
+exports.default = new App().app;

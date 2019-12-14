@@ -1,46 +1,30 @@
-import mongodb = require("./dbUtils")
-import userdb = require("./user")
+import express from "express";
+import bodyParser from "body-parser";
+import { Routes } from "./lib/routes/userRoutes";
+import mongoose from "mongoose";
 
-const express = require('express')
-const bodyparser = require('body-parser')
-const app = express()
-const port: string = process.env.PORT || '3000'
+class App {
 
-// Initiating Connection
-mongodb.connect(function(err, db) {
-    if (err) throw err;
-    app.set('view engine','ejs');
-    app.set('views', __dirname + "/view")
+    public app: express.Application = express();
+    public routePrv: Routes = new Routes();
+    public mongoUrl: string = 'mongodb://mongo:27017/app';
 
-    app.use(bodyparser.json())
-    app.use(bodyparser.urlencoded())
+    constructor() {
+        this.config();
+        this.mongoSetup();
+        this.routePrv.routes(this.app);
+    }
 
-    app.get('/', (req: any, res: any) => {
-      res.render('hello.ejs')
-    })
+    private config(): void{
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+    }
 
-    app.get('/user/:first_name', (req: any, res: any) => {
-      userdb.getUser(req.params.first_name, (err, user:userdb.User) => {
-        if (user) {
-          console.log(user)
-          res.status(200).send(JSON.stringify(user))
-          res.end()
-        } else {
-          res.status(404).json({error: 'not found'});
-          res.end()
-        }
-      })
-    });
+    private mongoSetup(): void{
+        mongoose.Promise = global.Promise;
+        mongoose.connect(this.mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true});
+    }
 
-    app.use((req: any, res: any) => {
-      res.status(404).send('Error 404');
-    });
+}
 
-    app.listen(port, (err: Error) => {
-      if (err) {
-        throw err
-      }
-      console.log(`server is listening on port ${port}`)
-    })
-
-});
+export default new App().app;

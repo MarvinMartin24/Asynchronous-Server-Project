@@ -1,38 +1,42 @@
-import mongodb = require("./../dbUtils")
-import userdb = require("./../user")
+import mongoose from 'mongoose';
+import { UserSchema } from '../lib/models/userModel';
 
-var users = [
-    {
+mongoose.connect('mongodb://mongo:27017/app', {useNewUrlParser: true, useUnifiedTopology: true});
+const User = mongoose.model('User', UserSchema);
+
+var User1 = new User({
+        firstName: "marvin",
+        lastName: "martin",
         email: "marvin@gmail.com",
-        first_name: "marvin",
-        last_name: "martin",
         password: "1234"
-    },
-    {
-        email: "heloise@gmail.com",
-        first_name: "heloise",
-        last_name: "tribeaudau",
-        password: "helo"
-    },
-    {
-        email: "tim@gmail.com",
-        first_name: "tim",
-        last_name: "martin",
-        password: "azerty"
-    },
-    {
-        email: "danny@gmail.com",
-        first_name: "danny",
-        last_name: "martin",
-        password: "dmartin"
-    }
-];
+    });
 
-// Initiating Connection
-mongodb.connect(function(err, db) {
-    userdb.addUsers(users, (err: Error | null) => {
-      if (err) throw err
-      console.log('Data populated')
+var User2 = new User({
+        firstName: "tim",
+        lastName: "martin",
+        email: "tim@gmail.com",
+        password: "azerty"
+    });
+
+var User3 = new User({
+        firstName: "heloise",
+        lastName: "tribeaudau",
+        email: "heloise@gmail.com",
+        password: "helo"
+    });
+
+var User4 = new User({
+        firstName: "danny",
+        lastName: "martin",
+        email: "danny@gmail.com",
+        password: "dmartin"
+    });
+
+
+User.create([User1, User2, User3, User4])
+  .then((data)=>{
+    console.log(data, "Populated !")
+    mongoose.connection.close();
+  }).catch((err)=>{
+    console.log("Not Populated...")
   })
-  mongodb.close();
-});
