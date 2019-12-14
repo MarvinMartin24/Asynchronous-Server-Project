@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+    - 12.13.0
+
+services:
+    - mongo
+
+env:
+    - APP_ENV=travis
+
+install:
+    - npm install
+
+script:
+    - npm run test-travis
+
+notifications:
+    - email: false
