@@ -1,4 +1,8 @@
+notifications:
+    - email: false
+
 language: node_js
+
 node_js:
     - 12.13.0
 
@@ -13,6 +17,3 @@ install:
 
 script:
     - npm run test-travis
-
-notifications:
-    - email: false
