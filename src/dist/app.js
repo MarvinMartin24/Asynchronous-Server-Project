@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('custom-env').env(process.env.APP_ENV);
 var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var userRoutes_1 = require("./lib/routes/userRoutes");
@@ -11,7 +12,7 @@ var App = /** @class */ (function () {
     function App() {
         this.app = express_1.default();
         this.routePrv = new userRoutes_1.Routes();
-        this.mongoUrl = 'mongodb://mongo:27017/app';
+        this.mongoUrl = "mongodb://" + process.env.DB_HOST + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME;
         this.config();
         this.mongoSetup();
         this.routePrv.routes(this.app);
