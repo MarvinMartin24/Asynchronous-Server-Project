@@ -4,7 +4,7 @@
   "description": "Web Technologies Final Project - Marvin Martin, Descottes Martin",
   "scripts": {
     "test": "./node_modules/.bin/mocha -r ts-node/register src/**/*.test.ts",
-    "test-travis": "npm run build && mocha src/dist/test",
+    "test-travis": "nyc --reporter=lcov npm run test",
     "build": "./node_modules/.bin/tsc --build tsconfig.json",
     "start": "./node_modules/.bin/ts-node src/server.ts",
     "dev": "./node_modules/.bin/nodemon",
