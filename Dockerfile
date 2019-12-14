@@ -8,6 +8,7 @@ WORKDIR /usr/app/
 COPY package*.json ./
 COPY nodemon.json ./
 COPY tsconfig.json ./
+COPY .env ./
 RUN npm install
 
 # Bundle app source

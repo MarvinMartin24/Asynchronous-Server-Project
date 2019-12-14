@@ -1,3 +1,4 @@
+require('custom-env').env(process.env.APP_ENV);
 import express from "express";
 import bodyParser from "body-parser";
 import { Routes } from "./lib/routes/userRoutes";
@@ -7,7 +8,7 @@ class App {
 
     public app: express.Application = express();
     public routePrv: Routes = new Routes();
-    public mongoUrl: string = 'mongodb://mongo:27017/app';
+    public mongoUrl: string = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
     constructor() {
         this.config();
