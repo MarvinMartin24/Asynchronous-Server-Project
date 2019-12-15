@@ -5,21 +5,21 @@ Asynchronous Server Technologies Project in Typescript and Nodejs
 
 ## Overview
 The purpose of this Project is to create a REST API to implement CRUD (create, read, update, delete) operations on Data (User + Metrics). To build this Project we used different Tools:
-    * [Docker](https://docs.docker.com/)
-        We decided to run securely our Application in a container.
-        For that we specially used ```docker-compose``` to create 3 services (App, Mongo, Mongo-Express)
-    * [npm](https://docs.npmjs.com/) and [node](https://nodejs.org/en/docs/)
-        We used nmp to manage our packages your our App
-    * [Mongoose](https://mongoosejs.com/docs/api.html)
-        Mongoose were our main tools to interact with our containerize Mongo database service.
-    * [Mongo-Express](http://mongodb-tools.com/tool/mongo-express/)
-        We added this third service to visualize our mongo database.
-    * [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/api/)
-        We also added Tests to do some basic testing (Connection to mongo and API requests)
-    * [Postman](https://learning.getpostman.com/)
-        We used Postman to test manually our Rest-API (POST/GET/DELETE/PUT)
-    * [Travis-ci](https://docs.travis-ci.com/)
-        Finally, we also did some continuous Integration to build a healthier project by developing and testing in smaller increments.  
+* [Docker](https://docs.docker.com/)
+    We decided to run securely our Application in a container.
+    For that we specially used ```docker-compose``` to create 3 services (App, Mongo, Mongo-Express)
+* [npm](https://docs.npmjs.com/) and [node](https://nodejs.org/en/docs/)
+    We used nmp to manage our packages your our App
+* [Mongoose](https://mongoosejs.com/docs/api.html)
+    Mongoose were our main tools to interact with our containerize Mongo database service.
+* [Mongo-Express](http://mongodb-tools.com/tool/mongo-express/)
+    We added this third service to visualize our mongo database.
+* [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/api/)
+    We also added Tests to do some basic testing (Connection to mongo and API requests)
+* [Postman](https://learning.getpostman.com/)
+    We used Postman to test manually our Rest-API (POST/GET/DELETE/PUT)
+* [Travis-ci](https://docs.travis-ci.com/)
+    Finally, we also did some continuous Integration to build a healthier project by developing and testing in smaller increments.  
 
 
 ## Requirements
