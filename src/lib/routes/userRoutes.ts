@@ -31,8 +31,6 @@ export class Routes {
         app.route('/user/me')
         .post(this.userController.validateUser, this.userController.getUserbyId);
 
-        // .put(this.userController.updateContact)
-        // .delete(this.userController.deleteContact)
 
     }
 }
