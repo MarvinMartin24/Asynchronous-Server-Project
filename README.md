@@ -35,7 +35,7 @@ Clone our project with this GitHub repository. Use this command:
 
 ### Lunch it !
 
-To lunch our 3 services, use this:
+To lunch our 3 services, go to your file directory and use this:
 ```bash
    docker-compose up -d --build
 ```
