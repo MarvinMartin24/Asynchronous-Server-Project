@@ -23,8 +23,6 @@ var Routes = /** @class */ (function () {
             .post(this.userController.authenticate);
         app.route('/user/me')
             .post(this.userController.validateUser, this.userController.getUserbyId);
-        // .put(this.userController.updateContact)
-        // .delete(this.userController.deleteContact)
     };
     return Routes;
 }());

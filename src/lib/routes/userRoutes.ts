@@ -19,6 +19,9 @@ export class Routes {
         app.route('/users')
         .get(this.userController.getAllUsers);
 
+        app.route('/user/me')
+        .get(this.userController.validateUser, this.userController.getUserbyId);
+
         app.route('/user/:email')
         .get(this.userController.getUserWithEmail)
 
@@ -27,10 +30,6 @@ export class Routes {
 
         app.route('/user/authenticate')
         .post(this.userController.authenticate);
-
-        app.route('/user/me')
-        .post(this.userController.validateUser, this.userController.getUserbyId);
-
 
     }
 }

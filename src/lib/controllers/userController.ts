@@ -41,16 +41,16 @@ export class UserController{
     }
 
     public validateUser(req: Request, res: Response, next: any) {
-        const token = req.headers.token;
+        const token = req.headers['token'];
         if (!token) {
             return res.status(401).json({status:"error", message: "No token"});
         }
 
-        jwt.verify(token, req.app.get('secretKey'), function(err, payload){
+        jwt.verify(token, req.app.get('secretKey'), function(err, decoded){
             if (err) {
                 res.status(401).json({status:"error", message: "Error"});
             } else {
-                User.findById(payload.id, function(err, user){
+                User.findById(decoded.id, function(err, user){
                     if (!user) {
                         return res.status(401).json({status:"error", message: "User not found"});
                     } else {
