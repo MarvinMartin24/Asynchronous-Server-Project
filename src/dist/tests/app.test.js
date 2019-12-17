@@ -76,7 +76,7 @@ describe('Tests', function () {
         });
         it('Access User Info', function (done) {
             chai.request(server)
-                .post('/user/me')
+                .get('/me')
                 .set({ token: token })
                 .end(function (err, res) {
                 res.should.have.status(200);

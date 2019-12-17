@@ -82,7 +82,7 @@ describe('Tests', () => {
 
       it('Access User Info', (done) => {
         chai.request(server)
-            .get('/user/me')
+            .get('/me')
             .set({ token: token })
             .end((err, res) => {
                 res.should.have.status(200);

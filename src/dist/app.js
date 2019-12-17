@@ -6,12 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require('custom-env').env(process.env.APP_ENV);
 var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
-var userRoutes_1 = require("./lib/routes/userRoutes");
+var routes_1 = require("./lib/routes/routes");
 var mongoose_1 = __importDefault(require("mongoose"));
 var App = /** @class */ (function () {
     function App() {
         this.app = express_1.default();
-        this.routePrv = new userRoutes_1.Routes();
+        this.routePrv = new routes_1.Routes();
         this.mongoUrl = "mongodb://" + process.env.DB_HOST + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME;
         this.config();
         this.mongoSetup();

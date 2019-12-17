@@ -1,9 +1,13 @@
 import {Request, Response, NextFunction} from "express";
 import { UserController } from "../controllers/userController";
+import { MetricController } from "../controllers/metricController";
+
 
 export class Routes {
 
     public userController: UserController = new UserController()
+    public metricController: MetricController = new MetricController()
+
 
     public routes(app): void {
 
@@ -19,7 +23,7 @@ export class Routes {
         app.route('/users')
         .get(this.userController.getAllUsers);
 
-        app.route('/user/me')
+        app.route('/me')
         .get(this.userController.validateUser, this.userController.getUserbyId);
 
         app.route('/user/:email')
@@ -30,6 +34,12 @@ export class Routes {
 
         app.route('/user/authenticate')
         .post(this.userController.authenticate);
+
+        app.route('/me/add-metric')
+        .post(this.userController.validateUser, this.metricController.addMetric);
+
+        app.route('/me/metrics')
+        .get(this.userController.validateUser, this.metricController.getMetricsbyId);
 
     }
 }
