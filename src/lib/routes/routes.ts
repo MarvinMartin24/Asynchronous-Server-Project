@@ -16,10 +16,15 @@ export class Routes {
 
         app.route('/')
         .get((req: Request, res: Response) => {
-             res.render('hello.ejs')
+             res.redirect('/login')
         })
 
-        // Users
+        app.route('/login')
+        .get((req: Request, res: Response) => {
+            res.render('login.ejs')
+        })
+
+        // API
         app.route('/users')
         .get(this.userController.getAllUsers);
 
