@@ -11,13 +11,13 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var App = /** @class */ (function () {
     function App() {
         this.app = express_1.default();
-        this.routePrv = new routes_1.Routes();
+        this.route = new routes_1.Routes();
         this.mongoUrl = "mongodb://" + process.env.DB_HOST + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME;
-        this.config();
+        this.appSetup();
         this.mongoSetup();
-        this.routePrv.routes(this.app);
+        this.route.routes(this.app);
     }
-    App.prototype.config = function () {
+    App.prototype.appSetup = function () {
         this.app.use(body_parser_1.default.json());
         this.app.use(body_parser_1.default.urlencoded({ extended: false }));
         this.app.set('secretKey', 'nodeRestApi-ECE'); // jwt secret token

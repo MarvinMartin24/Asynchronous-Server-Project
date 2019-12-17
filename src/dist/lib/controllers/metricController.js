@@ -6,14 +6,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
 var metricModel_1 = require("../models/metricModel");
 var Metric = mongoose_1.default.model('Metric', metricModel_1.MetricSchema);
+var newValue = function () {
+    return Math.floor(Math.random() * 100) + 1;
+};
+var newDate = function () {
+    return new Date();
+};
 var MetricController = /** @class */ (function () {
     function MetricController() {
     }
     MetricController.prototype.addMetric = function (req, res) {
         var newMetric = {
             userId: req.body.user._id,
-            value: req.body.metrics.value,
-            date: new Date()
+            value: newValue(),
+            date: newDate()
         };
         newMetric = new Metric(newMetric);
         Metric.create(newMetric)

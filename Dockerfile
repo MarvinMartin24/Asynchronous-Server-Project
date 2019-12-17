@@ -13,6 +13,7 @@ RUN npm install
 
 # Bundle app source
 COPY ./src ./src
+COPY ./tests ./tests
 VOLUME ["/usr/app/src"]
 
 

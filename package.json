@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Web Technologies Final Project - Marvin Martin, Descottes Martin",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha -r ts-node/register src/**/*.test.ts --exit",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha -r ts-node/register tests/*.test.ts --exit",
     "test-travis": "nyc --reporter=lcov npm run test",
     "build": "./node_modules/.bin/tsc --build tsconfig.json",
     "start": "./node_modules/.bin/ts-node src/server.ts",
