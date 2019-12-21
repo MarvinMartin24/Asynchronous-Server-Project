@@ -83,7 +83,7 @@ describe('Tests', () => {
 
       it('Access User data', (done) => {
         chai.request(server)
-            .get('/me')
+            .get('/profile')
             .set({ token: token })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -96,7 +96,7 @@ describe('Tests', () => {
     });
     it('Add Metrics', (done) => {
       chai.request(server)
-          .post('/me/add-metric')
+          .post('/profile/add-metric')
           .set({ token: token})
           .end((err, res) => {
               res.should.have.status(200);
@@ -107,7 +107,7 @@ describe('Tests', () => {
 
      it('Access Metrics data', (done) => {
         chai.request(server)
-            .get('/me/metrics')
+            .get('/profile/metrics')
             .set({ token: token})
             .end((err, res) => {
                 res.should.have.status(200);
