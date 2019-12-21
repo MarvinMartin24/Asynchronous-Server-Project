@@ -3,6 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import { Routes } from "./lib/routes/routes";
 import mongoose from "mongoose";
+const path = require('path');
+
 
 class App {
 
@@ -19,7 +21,11 @@ class App {
     private appSetup(): void{
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use("/static", express.static(path.join(__dirname, '/view')));
+        this.app.set('view engine','ejs');
+        this.app.set('views', __dirname + "/view")
         this.app.set('secretKey', 'nodeRestApi-ECE'); // jwt secret token
+        this.app.use('/', require('./view/view'));
 
     }
 

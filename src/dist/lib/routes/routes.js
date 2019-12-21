@@ -12,9 +12,13 @@ var Routes = /** @class */ (function () {
         app.set('views', __dirname + "./../../view");
         app.route('/')
             .get(function (req, res) {
-            res.render('hello.ejs');
+            res.redirect('/login');
         });
-        // Users
+        app.route('/login')
+            .get(function (req, res) {
+            res.render('login.ejs');
+        });
+        // API
         app.route('/users')
             .get(this.userController.getAllUsers);
         app.route('/me')

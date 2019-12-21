@@ -1,0 +1,22 @@
+<!<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <script src="/static/profile/profile.js"></script>
+    <body>
+        <div class='header'>
+            <div id="name"></div>
+            <div id="email"></div>
+
+        </div>
+        <div id='metrics'></div>
+    </body>
+    <script>
+        getToken();
+        $.getJSON("/profile").done((res) => {
+            $('#name').append(res.firstName + " " + res.lastName);
+            $('#email').append(res.email);
+            })
+    </script>
+</html>
