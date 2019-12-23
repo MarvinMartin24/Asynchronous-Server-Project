@@ -1,6 +1,9 @@
 require('custom-env').env(process.env.APP_ENV);
 import mongoose from 'mongoose';
-import { UserSchema } from '../src/lib/models/userModel';
+var User = require('../src/lib/models/userModel');
+var Metric = require('../src/lib/models/metricModel');
+
+
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../src/server');
@@ -8,7 +11,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-const User = mongoose.model('User', UserSchema);
+
 var UserTest= new User({
         firstName: "hello",
         lastName: "world",

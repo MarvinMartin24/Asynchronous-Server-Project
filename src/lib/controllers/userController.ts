@@ -1,10 +1,8 @@
 import mongoose from 'mongoose';
-import { UserSchema } from '../models/userModel';
 import { Request, Response } from 'express';
 const jwt = require('jsonwebtoken');
+var User = require('../models/userModel');
 
-
-const User = mongoose.model('User', UserSchema);
 
 
 export class UserController{
@@ -77,6 +75,32 @@ export class UserController{
                 res.send(err);
             }
             res.json(user);
+        });
+    }
+
+    public updateUserById (req: Request, res: Response) {
+        User.findOneAndUpdate({"_id": req.body.user._id}, req.body, (err, user) => {
+            if (err) {
+                return err;
+            } else {
+                user.password = req.body.password;
+                user.save((err, doc) => {
+                    if (err) {
+                        res.send(err);
+                    } else {
+                        res.status(200).send({status:"success", message: "User updated"});
+                    }
+                })
+            }
+        });
+    }
+
+    public deleteUserById (req: Request, res: Response) {
+        User.deleteOne({"_id" : req.body.user._id}, (err, user) => {
+            if(err){
+                res.send(err);
+            }
+            res.status(200).json({status:"success", message: "User deleted"});
         });
     }
 

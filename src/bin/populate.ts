@@ -1,12 +1,11 @@
 require('custom-env').env(process.env.APP_ENV);
 import mongoose from 'mongoose';
-import { UserSchema } from '../lib/models/userModel';
-import { MetricSchema } from '../lib/models/metricModel';
+var User = require('../lib/models/userModel');
+var Metric = require('../lib/models/metricModel');
 
 
 mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const User = mongoose.model('User', UserSchema);
 const Metric = mongoose.model('Metric', MetricSchema);
 
 var newValue = () => {

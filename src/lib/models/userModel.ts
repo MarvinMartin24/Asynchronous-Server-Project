@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-export const UserSchema = new Schema({
+var UserSchema = new Schema({
     firstName: {
         type: String,
         required: true
@@ -27,6 +27,7 @@ export const UserSchema = new Schema({
 );
 
 UserSchema.pre('save', function(this: any, next) {
+    if (!this.isModified('password')) return next();
     this.password = bcrypt.hashSync(this.password, SALT_WORK_FACTOR);
     next();
 });
@@ -44,3 +45,6 @@ UserSchema.methods.comparePassword = function(testPassword) {
         });
     });
 };
+
+var User = mongoose.model('User', UserSchema);
+export = User;

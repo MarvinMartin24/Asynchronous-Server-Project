@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-export const MetricSchema = new Schema({
+var MetricSchema = new Schema({
     userId: {
         type: String
     },
@@ -15,3 +15,6 @@ export const MetricSchema = new Schema({
 },
 { collection: 'metrics' }
 );
+
+var Metric = mongoose.model('Metric', MetricSchema);
+export = Metric;

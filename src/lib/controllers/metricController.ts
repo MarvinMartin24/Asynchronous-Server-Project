@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-import { MetricSchema } from '../models/metricModel';
 import { Request, Response } from 'express';
+var Metric = require('../models/metricModel');
 
-const Metric = mongoose.model('Metric', MetricSchema);
 
 var newValue = () => {
     return Math.floor(Math.random() * 100) + 1;

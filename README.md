@@ -30,20 +30,20 @@ Only [Docker](https://docs.docker.com/v17.09/engine/installation/)! That is the 
 
 Clone our project with this GitHub repository. Use this command:
 ```bash
-   git clone https://github.com/MarvinMartin24/Asynchronous-Server-Project
+git clone https://github.com/MarvinMartin24/Asynchronous-Server-Project
 ```
 
 ### Lunch it !
 
 To lunch our 3 services, go to your file directory and use this:
 ```bash
-   docker-compose up -d --build
+docker-compose up -d --build
 ```
 
 ### Populate your Database
 To initiate your mongo service, we created a command ```Populate```, please use:
 ```bash
-   docker exec -it app npm run populate
+docker exec -it app npm run populate
 ```
 This will added this type of User (+ some metrics) to your mongo database:
 ```
@@ -75,7 +75,7 @@ So, to checkout the database, Go to your [LocalHost(Mongo-express)](http://local
 ## Test
 By using ```Mocha``` and ```Chai```, we created some tests, You can run the test with:
 ```bash
-   docker exec -it app npm run test
+docker exec -it app npm run test
 ```
 ## Postman
 
@@ -83,7 +83,7 @@ By using ```Mocha``` and ```Chai```, we created some tests, You can run the test
 
 You can do a *POST* to this URL to post a user (from the body) :
 ```
-    http://localhost:3000/user/register
+http://localhost:3000/user/register
 ```
 
 ## Difficulties

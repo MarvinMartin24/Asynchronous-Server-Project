@@ -27,6 +27,12 @@ export class Routes {
         app.route('/user/authenticate')
         .post(this.userController.authenticate);
 
+        app.route('/user/delete')
+        .delete(this.userController.validateUser, this.userController.deleteUserById);
+
+        app.route('/user/update')
+        .put(this.userController.validateUser, this.userController.updateUserById);
+
         app.route('/profile/add-metric')
         .post(this.userController.validateUser, this.metricController.addMetric);
 
