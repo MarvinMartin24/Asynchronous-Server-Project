@@ -8,20 +8,10 @@ var Routes = /** @class */ (function () {
         this.metricController = new metricController_1.MetricController();
     }
     Routes.prototype.routes = function (app) {
-        app.set('view engine', 'ejs');
-        app.set('views', __dirname + "./../../view");
-        app.route('/')
-            .get(function (req, res) {
-            res.redirect('/login');
-        });
-        app.route('/login')
-            .get(function (req, res) {
-            res.render('login.ejs');
-        });
         // API
         app.route('/users')
             .get(this.userController.getAllUsers);
-        app.route('/me')
+        app.route('/profile')
             .get(this.userController.validateUser, this.userController.getUserbyId);
         app.route('/user/:email')
             .get(this.userController.getUserWithEmail);
@@ -29,9 +19,9 @@ var Routes = /** @class */ (function () {
             .post(this.userController.addUser);
         app.route('/user/authenticate')
             .post(this.userController.authenticate);
-        app.route('/me/add-metric')
+        app.route('/profile/add-metric')
             .post(this.userController.validateUser, this.metricController.addMetric);
-        app.route('/me/metrics')
+        app.route('/profile/metrics')
             .get(this.userController.validateUser, this.metricController.getMetricsbyId);
     };
     return Routes;

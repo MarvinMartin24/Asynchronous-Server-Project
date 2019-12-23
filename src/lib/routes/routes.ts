@@ -15,6 +15,9 @@ export class Routes {
         app.route('/users')
         .get(this.userController.getAllUsers);
 
+        app.route('/user/delete/:_id')
+        .delete(this.userController.deleteUser);
+
         app.route('/profile')
         .get(this.userController.validateUser, this.userController.getUserbyId);
 

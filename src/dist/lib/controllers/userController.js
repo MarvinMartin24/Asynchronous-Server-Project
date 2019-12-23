@@ -19,6 +19,16 @@ var UserController = /** @class */ (function () {
             res.status(400).json(err);
         });
     };
+    UserController.prototype.deleteUser = function (req, res) {
+        User.deleteOne({ email: req.body.email }, function (err, result) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.send(result);
+            }
+        });
+    };
     UserController.prototype.authenticate = function (req, res) {
         User.findOne({ email: req.body.email }).then(function (user) {
             if (!user) {

@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { UserSchema } from '../models/userModel';
 import { Request, Response } from 'express';
+import { userInfo } from 'os';
 const jwt = require('jsonwebtoken');
 
 
@@ -17,6 +18,25 @@ export class UserController{
         }).catch((err) => {
             res.status(400).json(err);
         });
+    }
+
+    public deleteUser(req: Request, res: Response) {
+        User.findByIdAndRemove({_id: req.params._id}, (err, user) => {
+            if(err){
+                res.send(err);
+            }
+            res.json(user);
+        });
+    }
+
+    public updateUser(req: Request, res: Response) {
+        User.update({_id: req.params.id}, {$set : {fisrtName: req.body.newFirstName, lastName: req.body.newLastName, email: req.body.newPassword} },
+        function(err,user){
+            if(err) {
+                res.json(err);
+            }
+            res.json(user);
+        })
     }
 
     public authenticate(req: Request, res: Response) {
