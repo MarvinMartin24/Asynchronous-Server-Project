@@ -11,7 +11,7 @@ The purpose of this Project is to create a REST API to implement CRUD (create, r
 * [npm](https://docs.npmjs.com/) and [node](https://nodejs.org/en/docs/)
     We used npm to manage our packages your our App
 * [Mongoose](https://mongoosejs.com/docs/api.html)
-    Mongoose was0 our main tool to interact with our containerize Mongo database service.
+    Mongoose was our main tool to interact with our containerize Mongo database service.
 * [Mongo-Express](http://mongodb-tools.com/tool/mongo-express/)
     We added this third service to visualize our mongo database.
 * [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/api/)
@@ -23,7 +23,7 @@ The purpose of this Project is to create a REST API to implement CRUD (create, r
 
 
 ## Requirements
-Only [Docker](https://docs.docker.com/v17.09/engine/installation/)! That is the magic of docker, you do not need anything else ! Follow the next instructions and everything will work perfectly well ! Just me sure you do not have any existing containers called app, mongo, mongo-express. If it is the case, use `docker stop` and `docker rm`
+Only [Docker](https://docs.docker.com/v17.09/engine/installation/)! That is the magic of docker, you do not need anything else ! Follow the next instructions and everything will work perfectly well ! Just make sure you do not have any existing containers called app, mongo, mongo-express. If this is the case, use `docker stop` and `docker rm`
 
 
 ## Get Started
@@ -84,7 +84,7 @@ So, to see the database, Go to [LocalHost(Mongo-express)](http://localhost:8081/
 
 
 ## Test
-By using ```Mocha``` and ```Chai```, we created some tests, You can run the test with:
+By using ```Mocha``` and ```Chai```, we created some tests, You can run the tests with:
 ```bash
 docker exec -it app npm run test
 ```
