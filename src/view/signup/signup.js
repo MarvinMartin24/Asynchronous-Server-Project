@@ -9,6 +9,9 @@ $("form").on("submit", (e) => {
     if(pwd.value !== pwd2.value){
         alert("Passwords are different");
     }
+    else if(firstName.value === "" || lastName.value === ""){
+        alert("Please fill every cell");
+    }
     else if(isValid){
         alert("Does not contain Special Characters.");
     }
