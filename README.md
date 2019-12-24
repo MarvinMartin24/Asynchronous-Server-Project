@@ -39,19 +39,30 @@ To lunch our 3 services, go to your file directory and use this:
 ```bash
 docker-compose up -d --build
 ```
+Behind this command, there is a ```npm run dev```
 
 ### Populate your Database
 To initiate your mongo service, we created a command ```Populate```, please use:
 ```bash
 docker exec -it app npm run populate
 ```
-This will added this type of User (+ some metrics) to your mongo database:
+This will added 2 Users (each one withe 3 metrics) to your mongo database.
+Here
+is an example:
 ```
 {
+    "_id": ObjectID("5e01eca520ebea0090837ce2"),
     firstName: "hello",
     lastName: "world",
     email: "hello@world.com",
     password: "azerty"
+}
+
+{
+    "_id": ObjectID("5e01eca520ebea0090837ce5"),
+    "userId": "5e01eca520ebea0090837ce2",
+    "value": 10,
+    "date": ISODate("2019-12-24T10:47:01.038Z"),
 }
 ```
 ### Additional Scripts
@@ -77,21 +88,37 @@ By using ```Mocha``` and ```Chai```, we created some tests, You can run the test
 ```bash
 docker exec -it app npm run test
 ```
-## Postman
+## API
 
-### Examples
+### User Usage
 
-You can do a *POST* to this URL to post a user (from the body) :
-```
-http://localhost:3000/user/register
-```
+| Method        | URL                    | Inputs           | Results     |
+| ------------- |:----------------------:| ----------------:| -----------:|
+| POST          | /api/user/register     | User infos       |  New User   |
+| POST          | /api/user/authenticate | email, pwd       |    Token    |
+| GET           | /api/profile           | Token            | User infos  |
+| PUT           | /api/user/update       | Token + New infos| Update  User|
+| DELETE        | /api/user/delete       | Token + UserId   | Delete User |
+
+### Metric Usage
+
+| Method        | URL                           | Inputs           | Results                |
+| ------------- |:-----------------------------:| ----------------:| ----------------------:|
+| POST          | /api/profile/add-metric       |  Token + UserId  | New Metric             |
+| GET           | /api/profile/metrics          |  Token + UserId  | Show Metrics           |
+| PUT           | /api/profile/metric/update    |  Token + UserId  | Update  First Metric   |
+| DELETE        | /api/profile/metric/delete    |  Token + UserId  | Delete FirstMetric     |
+| PUT           | /api/profile/metric/update/:id|  Token + MetricId| Update a pointed Metric|
+| DELETE        | /api/profile/metric/delete/:id|  Token + MetricId| Delete a pointed Metric|
+
 
 ## Difficulties
 * For the DevOps Part:
     The biggest problem was to setup the environment, because depending on the circonstancies, the environment required to connect to mongo in the containers or testing (for Travis) are not the same (check .env and .env.travis).
 * For the Backend Part:
-    The main issue was setting up the model using mongoose. We needed to create several file to elaborate the iraction with the database.
-    Next the authentication process was quite complicated. Mainly because we use Token (see jwt).
+    The main issue was setting up the model using mongoose. We needed to create several file to elaborate the interaction with the database.
+    Next, the authentication process was quite complicated. Mainly because we use Token (see jwt).
+    Finally, it was hard to find a clean way to resquest the API in the Front side.
 
 ## Contributors
 MARTIN Marvin and DESCOTTES Martin (ING4 SI Gr02)
