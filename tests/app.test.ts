@@ -24,6 +24,7 @@ describe('Tests', () => {
     before((done) => {
         mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(() => {
+            mongoose.connection.db.dropDatabase();
             done();
         })
     });
@@ -54,7 +55,7 @@ describe('Tests', () => {
       let user = {
                 firstName: "hello",
                 lastName: "world",
-                email: "hello@world.com",
+                email: "hello2@world.com",
                 password: "azerty"
       }
       it('Post Register', (done) => {
@@ -64,9 +65,9 @@ describe('Tests', () => {
             .end((err, res) => {
                   res.should.have.status(200);
                   res.body.should.be.a('object');
-                  res.body.email.should.be.eq(user.email);
-                  res.body.lastName.should.be.eq(user.lastName);
-                  res.body.firstName.should.be.eq(user.firstName);
+                  res.body.data.user.email.should.be.eq(user.email);
+                  res.body.data.user.lastName.should.be.eq(user.lastName);
+                  res.body.data.user.firstName.should.be.eq(user.firstName);
               done();
             });
       });
