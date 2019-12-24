@@ -9,9 +9,9 @@ The purpose of this Project is to create a REST API to implement CRUD (create, r
     We decided to run securely our Application in a container.
     For that we specially used ```docker-compose``` to create 3 services (App, Mongo, Mongo-Express)
 * [npm](https://docs.npmjs.com/) and [node](https://nodejs.org/en/docs/)
-    We used nmp to manage our packages your our App
+    We used npm to manage our packages your our App
 * [Mongoose](https://mongoosejs.com/docs/api.html)
-    Mongoose were our main tools to interact with our containerize Mongo database service.
+    Mongoose was0 our main tool to interact with our containerize Mongo database service.
 * [Mongo-Express](http://mongodb-tools.com/tool/mongo-express/)
     We added this third service to visualize our mongo database.
 * [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/api/)
@@ -33,7 +33,7 @@ Clone our project with this GitHub repository. Use this command:
 git clone https://github.com/MarvinMartin24/Asynchronous-Server-Project
 ```
 
-### Lunch it !
+### Launch it !
 
 To launch our 3 services, go to your file directory and use this:
 ```bash
