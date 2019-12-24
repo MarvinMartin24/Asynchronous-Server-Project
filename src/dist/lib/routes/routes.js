@@ -11,11 +11,7 @@ var Routes = /** @class */ (function () {
         // API
         app.route('/api/users')
             .get(this.userController.getAllUsers);
-<<<<<<< HEAD
         app.route('/api/profile')
-=======
-        app.route('/profile')
->>>>>>> front
             .get(this.userController.validateUser, this.userController.getUserbyId);
         app.route('/api/user/:email')
             .get(this.userController.getUserWithEmail);
@@ -23,7 +19,6 @@ var Routes = /** @class */ (function () {
             .post(this.userController.addUser);
         app.route('/api/user/authenticate')
             .post(this.userController.authenticate);
-<<<<<<< HEAD
         app.route('/api/user/delete')
             .delete(this.userController.validateUser, this.userController.deleteUserById);
         app.route('/api/user/update')
@@ -31,11 +26,6 @@ var Routes = /** @class */ (function () {
         app.route('/api/profile/add-metric')
             .post(this.userController.validateUser, this.metricController.addMetric);
         app.route('/api/profile/metrics')
-=======
-        app.route('/profile/add-metric')
-            .post(this.userController.validateUser, this.metricController.addMetric);
-        app.route('/profile/metrics')
->>>>>>> front
             .get(this.userController.validateUser, this.metricController.getMetricsbyId);
         app.route('/api/profile/metric/delete')
             .delete(this.userController.validateUser, this.metricController.deleteFirstMetricById);

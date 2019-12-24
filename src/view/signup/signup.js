@@ -5,7 +5,6 @@ $("form").on("submit", (e) => {
     //Regex for Valid Characters i.e. Alphabets, Numbers and Space.
     var regex = /^[A-Za-z0-9 ]+$/
     var isValid = regex.test(pwd.value);
-    console.log(pwd.value.length)
 
     if(pwd.value !== pwd2.value){
         alert("Passwords are different");
