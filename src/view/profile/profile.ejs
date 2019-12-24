@@ -4,13 +4,24 @@
         <% include ../partials/head %>
     </head>
     <script src="/static/profile/profile.js"></script>
-    <body>
-        <div class='header'>
+    <body class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Welcome to your profile page</h1>
+            <label for="informations">Your informations :</label>
             <div id="name"></div>
             <div id="email"></div>
-
+            <br>
+            <button class="btn btn-success" id="show-metrics">
+                Bring the metrics
+            </button>
+        <div id='metrics'></div>    
         </div>
-        <div id='metrics'></div>
+        <br>
+        <div id='logout'>
+            <button class="btn btn-success" id="log-out">
+                Log out
+            </button>
+        </div>
     </body>
     <script>
         getToken();
