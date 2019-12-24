@@ -39,8 +39,8 @@ To lunch our 3 services, go to your file directory and use this:
 ```bash
 docker-compose up -d --build
 ```
-Behind this command, there is a ```npm run dev```
-To see `nodemon` running use ```docker-compose up --build```
+Behind this command, there is a ```npm run dev``` .
+To see nodemon running use ```docker-compose up --build``` .
 
 ### Populate your Database
 To initiate your mongo service, we created a command `Populate`, please use:
@@ -48,8 +48,7 @@ To initiate your mongo service, we created a command `Populate`, please use:
 docker exec -it app npm run populate
 ```
 This will added 2 Users (each one withe 3 metrics) to your mongo database.
-Here
-is an example:
+Here is an example:
 ```
 {
     "_id": ObjectID("5e01eca520ebea0090837ce2"),
@@ -78,10 +77,10 @@ docker exec -it app npm run build
 ## Web Visualization
 
 The server listens on port 3000 of your localhost.
-So, to checkout the App, Go to your [LocalHost (app)](http://localhost:3000/)
+So, to checkout the App, Go to [LocalHost (app)](http://localhost:3000/)
 
-Similarly the mongo-express is on port 8080 of your localhost.
-So, to checkout the database, Go to your [LocalHost(Mongo-express)](http://localhost:8081/)
+Similarly the mongo-express is on port 8081 of your localhost.
+So, to see the database, Go to [LocalHost(Mongo-express)](http://localhost:8081/)
 
 
 ## Test
