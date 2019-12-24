@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <% include ../partials/head %>
@@ -10,26 +10,31 @@
           <form>
             <div class="form-group" style="width: 200px">
               <label for="form_firstName">First Name </label>
-              <input id="form_firstName" type="text" name="firstName" value="<%= lastName %>"/>
+              <input id="form_firstName" type="text" name="firstName"/>
               <label for="form_lastName">Last Name</label>
               <input id="form_lastName" type="text" name="lastName" />
               <label for="form_email">Email</label>
               <input id="form_email" type="email" name="email" />
-              <label for="form_password">Old Password</label>
+              <label for="form_password">Password</label>
               <input id="form_password" type="password" name="password" />
-              <label for="form_password2">New Password</label>
+              <label for="form_password2">Password</label>
               <input id="form_password2" type="password" name="password2" />
             </div>
             <button class="btn btn-primary btn-block" type="submit" value="Submit">Modify</button>
           </form>
+          <br>
+          <button class="goToProfile" href="/me" onClick='document.location.href="/me"'> Back </button>
+
         </div>
         <script src="/static/modify/modify.js"></script>
         <script>
             getToken();
             $.getJSON("/api/profile").done((res) => {
-                $('#form_firstName').text(res.firstName);
-                $('#email').text(res.email);
+                document.getElementById("form_firstName").value = res.data.user.firstName;
+                document.getElementById("form_lastName").value = res.data.user.lastName;
+                document.getElementById("form_email").value = res.data.user.email;
                 })
+
         </script>
     </body>
 </html>
