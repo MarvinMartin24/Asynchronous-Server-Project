@@ -40,9 +40,10 @@ To lunch our 3 services, go to your file directory and use this:
 docker-compose up -d --build
 ```
 Behind this command, there is a ```npm run dev```
+To see `nodemon` running use ```docker-compose up --build```
 
 ### Populate your Database
-To initiate your mongo service, we created a command ```Populate```, please use:
+To initiate your mongo service, we created a command `Populate`, please use:
 ```bash
 docker exec -it app npm run populate
 ```
