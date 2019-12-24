@@ -6,7 +6,6 @@ var Metric = require('../lib/models/metricModel');
 
 mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const Metric = mongoose.model('Metric', MetricSchema);
 
 var newValue = () => {
     return Math.floor(Math.random() * 100) + 1;

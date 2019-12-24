@@ -14,7 +14,7 @@
     </body>
     <script>
         getToken();
-        $.getJSON("/profile").done((res) => {
+        $.getJSON("/api/profile").done((res) => {
             $('#name').append(res.firstName + " " + res.lastName);
             $('#email').append(res.email);
             })

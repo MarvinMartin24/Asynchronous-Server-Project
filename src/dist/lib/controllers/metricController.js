@@ -1,11 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importDefault(require("mongoose"));
-var metricModel_1 = require("../models/metricModel");
-var Metric = mongoose_1.default.model('Metric', metricModel_1.MetricSchema);
+var Metric = require('../models/metricModel');
 var newValue = function () {
     return Math.floor(Math.random() * 100) + 1;
 };
@@ -35,6 +30,31 @@ var MetricController = /** @class */ (function () {
                 res.send(err);
             }
             res.json(metrics);
+        });
+    };
+    MetricController.prototype.updateFirstMetricById = function (req, res) {
+        Metric.findOneAndUpdate({ "userId": req.body.user._id }, {
+            userId: req.body.user._id,
+            value: newValue(),
+            date: newDate()
+        }, function (err, metric) {
+            if (err) {
+                return err;
+            }
+            else {
+                res.status(200).send({ status: "success", message: "Metric updated" });
+            }
+        });
+    };
+    MetricController.prototype.deleteFirstMetricById = function (req, res) {
+        Metric.deleteOne({ "userId": req.body.user._id }, function (err, metric) {
+            if (err) {
+                res.send(err);
+            }
+            if (!metric) {
+                res.status(404).json({ status: "error", message: "Metric not found" });
+            }
+            res.status(200).json({ status: "success", message: "Metric deleted" });
         });
     };
     return MetricController;

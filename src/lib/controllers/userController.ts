@@ -4,30 +4,37 @@ const jwt = require('jsonwebtoken');
 var User = require('../models/userModel');
 
 
-
 export class UserController{
 
     public addUser(req: Request, res: Response) {
         let newUser = new User(req.body);
-        User.create(newUser)
-        .then((data) => {
-            res.status(200).json(data);
-        }).catch((err) => {
-            res.status(400).json(err);
+        User.find({email: newUser.email}, (err, user) => {
+            if(err) throw err;
+            if(Object.keys(user).length == 0){
+                User.create(newUser)
+                .then((data) => {
+                    res.status(200).json({status:"success", message: "User created", data:{user:data}});
+                }).catch((err) => {
+                    res.status(400).json(err);
+                });
+            }
+            else{
+                res.status(200).json({status:"error", message: "User already exist"});
+            }
         });
     }
 
     public authenticate(req: Request, res: Response) {
         User.findOne({ email: req.body.email }).then((user) => {
             if (!user) {
-                res.json('Not in the Database.');
+                res.json({status:"error", message: 'Wrong Email', data:null});
             } else {
                 user.comparePassword(req.body.password).then(() => {
                     const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-                    res.status(200).json({status:"success", message: "User found", data: {user: user, token:token}});
+                    res.status(200).json({status:"success", message: "Login !", data: {user: user, token:token}});
                 }).catch((err) => {
                     if (!err) {
-                        res.status(404).json({status:"error", message: "Invalid email/password", data:null});
+                        res.json({status:"error", message: "Invalid Password", data:null});
                     } else {
                         res.status(404).json({status:"error", message: "Problem", data:null});
                     }
@@ -74,6 +81,7 @@ export class UserController{
             if(err){
                 res.send(err);
             }
+
             res.json(user);
         });
     }

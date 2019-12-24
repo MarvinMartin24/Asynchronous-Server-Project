@@ -59,7 +59,7 @@ describe('Tests', () => {
       }
       it('Post Register', (done) => {
         chai.request(server)
-            .post('/user/register')
+            .post('/api/user/register')
             .send(user)
             .end((err, res) => {
                   res.should.have.status(200);
@@ -73,7 +73,7 @@ describe('Tests', () => {
 
       it('Post authenticate', (done) => {
         chai.request(server)
-            .post('/user/authenticate')
+            .post('/api/user/authenticate')
             .send({ email: user.email, password: user.password })
             .end((err, res) => {
                   res.should.have.status(200);
@@ -86,7 +86,7 @@ describe('Tests', () => {
 
       it('Access User data', (done) => {
         chai.request(server)
-            .get('/profile')
+            .get('/api/profile')
             .set({ token: token })
             .end((err, res) => {
                 res.should.have.status(200);
@@ -99,7 +99,7 @@ describe('Tests', () => {
     });
     it('Add Metrics', (done) => {
       chai.request(server)
-          .post('/profile/add-metric')
+          .post('/api/profile/add-metric')
           .set({ token: token})
           .end((err, res) => {
               res.should.have.status(200);
@@ -110,7 +110,7 @@ describe('Tests', () => {
 
      it('Access Metrics data', (done) => {
         chai.request(server)
-            .get('/profile/metrics')
+            .get('/api/profile/metrics')
             .set({ token: token})
             .end((err, res) => {
                 res.should.have.status(200);

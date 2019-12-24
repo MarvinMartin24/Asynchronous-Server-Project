@@ -16,6 +16,5 @@ COPY ./src ./src
 COPY ./tests ./tests
 VOLUME ["/usr/app/src"]
 
-
 EXPOSE 3000
 CMD [ "npm", "run", "dev" ]

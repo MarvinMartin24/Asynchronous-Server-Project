@@ -5,11 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require('custom-env').env(process.env.APP_ENV);
 var mongoose_1 = __importDefault(require("mongoose"));
-var userModel_1 = require("../lib/models/userModel");
-var metricModel_1 = require("../lib/models/metricModel");
+var User = require('../lib/models/userModel');
+var Metric = require('../lib/models/metricModel');
 mongoose_1.default.connect("mongodb://" + process.env.DB_HOST + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME, { useNewUrlParser: true, useUnifiedTopology: true });
-var User = mongoose_1.default.model('User', userModel_1.UserSchema);
-var Metric = mongoose_1.default.model('Metric', metricModel_1.MetricSchema);
 var newValue = function () {
     return Math.floor(Math.random() * 100) + 1;
 };

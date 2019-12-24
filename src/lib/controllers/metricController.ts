@@ -36,4 +36,31 @@ export class MetricController{
             res.json(metrics);
         });
     }
+
+    public updateFirstMetricById (req: Request, res: Response) {
+        Metric.findOneAndUpdate({"userId": req.body.user._id},
+        {
+                userId: req.body.user._id,
+                value: newValue(),
+                date: newDate()
+        }, (err, metric) => {
+            if (err) {
+                return err;
+            } else {
+                res.status(200).send({status:"success", message: "Metric updated"});
+                }
+        })
+    }
+
+    public deleteFirstMetricById (req: Request, res: Response) {
+        Metric.deleteOne({"userId" : req.body.user._id}, (err, metric) => {
+            if(err){
+                res.send(err);
+            }
+            if (!metric){
+                res.status(404).json({status:"error", message: "Metric not found"});
+            }
+            res.status(200).json({status:"success", message: "Metric deleted"});
+        });
+    }
 }

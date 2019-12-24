@@ -2,10 +2,9 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
 var Schema = mongoose_1.default.Schema;
-exports.MetricSchema = new Schema({
+var MetricSchema = new Schema({
     userId: {
         type: String
     },
@@ -16,3 +15,5 @@ exports.MetricSchema = new Schema({
         type: Date
     }
 }, { collection: 'metrics' });
+var Metric = mongoose_1.default.model('Metric', MetricSchema);
+module.exports = Metric;

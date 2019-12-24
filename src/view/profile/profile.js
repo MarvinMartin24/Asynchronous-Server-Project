@@ -10,7 +10,7 @@ const getToken = () => {
 };
 
 const getProfile = async () => {
-    $.getJSON("/profile")
+    $.getJSON("/api/profile")
         .done((res) => {
                 console.log(res);
                 user = res;

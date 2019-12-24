@@ -3,7 +3,7 @@ $("form").on("submit", (e) => {
 
     const [email, pwd] = $("form").serializeArray();
 
-    $.post("/user/authenticate",
+    $.post("/api/user/authenticate",
         {
             email: email.value,
             password: pwd.value
@@ -12,7 +12,11 @@ $("form").on("submit", (e) => {
             console.log(res);
             if(res.status === "success"){
                 localStorage.setItem('token', res.data.token);
+                alert(res.message);
+                window.location.href = '/me';
             }
-            window.location.href = '/me';
+            if(res.status === "error"){
+                alert(res.message);
+            }
         })
 });

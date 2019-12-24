@@ -1,0 +1,32 @@
+<!<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body class="container">
+        <div id="form">
+          <p>Please create your Account</p>
+          <hr/>
+          <form>
+            <div class="form-group" style="width: 200px">
+              <label for="form_firstName">First Name</label>
+              <input id="form_firstName" type="text" name="firstName" />
+              <label for="form_lastName">Last Name</label>
+              <input id="form_lastName" type="text" name="lastName" />
+              <label for="form_email">Email</label>
+              <input id="form_email" type="email" name="email" />
+              <label for="form_password">Password</label>
+              <input id="form_password" type="password" name="password" />
+              <label for="form_password2">Password</label>
+              <input id="form_password2" type="password" name="password2" />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" value="Submit">Create</button>
+          </form>
+          <hr/>
+          <button class="btn btn-success btn-block" type="submit" href="/login" onClick='document.location.href="/login"'>
+            Login
+          </button>
+        </div>
+        <script src="/static/signup/signup.js"></script>
+    </body>
+</html>

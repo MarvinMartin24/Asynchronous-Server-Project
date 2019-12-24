@@ -1,12 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = __importDefault(require("mongoose"));
-var userModel_1 = require("../models/userModel");
 var jwt = require('jsonwebtoken');
-var User = mongoose_1.default.model('User', userModel_1.UserSchema);
+var User = require('../models/userModel');
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -77,6 +72,32 @@ var UserController = /** @class */ (function () {
                 res.send(err);
             }
             res.json(user);
+        });
+    };
+    UserController.prototype.updateUserById = function (req, res) {
+        User.findOneAndUpdate({ "_id": req.body.user._id }, req.body, function (err, user) {
+            if (err) {
+                return err;
+            }
+            else {
+                user.password = req.body.password;
+                user.save(function (err, doc) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    else {
+                        res.status(200).send({ status: "success", message: "User updated" });
+                    }
+                });
+            }
+        });
+    };
+    UserController.prototype.deleteUserById = function (req, res) {
+        User.deleteOne({ "_id": req.body.user._id }, function (err, user) {
+            if (err) {
+                res.send(err);
+            }
+            res.status(200).json({ status: "success", message: "User deleted" });
         });
     };
     UserController.prototype.getUserWithEmail = function (req, res) {
