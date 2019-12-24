@@ -52,6 +52,7 @@ describe('Tests', () => {
     describe('API Tests', () => {
       let token;
       let userLog;
+      let metric;
       let user = {
                 firstName: "hello",
                 lastName: "world",
@@ -98,6 +99,17 @@ describe('Tests', () => {
                 done();
             })
         });
+        it('Modify User data', (done) => {
+          chai.request(server)
+              .put('/api/user/update')
+              .set({ token: token })
+              .send({ email: "hello3@world.com", password: "@azerty"})
+              .end((err, res) => {
+                  res.should.have.status(200);
+                  res.body.status.should.be.eq("success");
+                  done();
+              })
+          });
         it('Add Metrics', (done) => {
           chai.request(server)
               .post('/api/profile/add-metric')
@@ -116,10 +128,63 @@ describe('Tests', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.data.metrics[0].userId.should.be.eq(userLog._id);
+                    metric = res.body.data.metrics[0];
                     done();
                 })
-            });
+         });
+         it('Update first Metric', (done) => {
+            chai.request(server)
+                .put('/api/profile/metric/update')
+                .set({ token: token})
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.status.should.be.eq("success");
+                    done();
+                })
+         });
+         it('Update selected Metric', (done) => {
+            chai.request(server)
+                .put('/api/profile/metric/update/'+ metric._id)
+                .set({ token: token})
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.status.should.be.eq("success");
+                    done();
+                })
+         });
+         it('Delete First Metric', (done) => {
+            chai.request(server)
+                .delete('/api/profile/metric/delete')
+                .set({ token: token})
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.status.should.be.eq("success");
+                    done();
+                })
+         });
+         it('Delete selected Metric', (done) => {
+            chai.request(server)
+                .delete('/api/profile/metric/delete/'+ metric._id)
+                .set({ token: token})
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.status.should.be.eq("success");
+                    done();
+                })
+         });
+         it('Delete User', (done) => {
+           chai.request(server)
+             .delete('/api/user/delete')
+             .set({ token: token })
+             .send({ email: "hello@world.com"})
+             .end((err, res) => {
+                res.should.have.status(200);
+                res.body.status.should.be.eq("success");
+                done();
+            })
         });
+        });
+
     });
 
 export = {};

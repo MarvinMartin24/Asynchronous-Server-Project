@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var mongoose_1 = __importDefault(require("mongoose"));
 var jwt = require('jsonwebtoken');
 var User = require('../models/userModel');
+mongoose_1.default.set('useFindAndModify', false);
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -78,9 +83,9 @@ var UserController = /** @class */ (function () {
     UserController.prototype.getUserbyId = function (req, res) {
         User.findById(req.body.user._id, function (err, user) {
             if (err) {
-                res.send(err);
+                res.send({ status: "error", message: "problem" });
             }
-            res.json(user);
+            res.status(200).json({ status: "success", message: "User found", data: { user: user } });
         });
     };
     UserController.prototype.updateUserById = function (req, res) {

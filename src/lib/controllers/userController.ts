@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Request, Response } from 'express';
 const jwt = require('jsonwebtoken');
 var User = require('../models/userModel');
+mongoose.set('useFindAndModify', false);
 
 
 export class UserController{

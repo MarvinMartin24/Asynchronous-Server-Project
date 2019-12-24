@@ -8,11 +8,16 @@ var new_url_delete = '/api/profile/metric/delete'
 
 const getToken = () => {
     token = localStorage.getItem('token')
-    $.ajaxSetup({
-        headers: {
-          'token': token
-        }
-      });
+    if (!token){
+        window.location.replace('/login');
+    }
+    else{
+        $.ajaxSetup({
+            headers: {
+              'token': token
+            }
+          });
+    }
 };
 
 const addMetrics = () => {

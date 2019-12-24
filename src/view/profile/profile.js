@@ -2,11 +2,17 @@ let token
 
 const getToken = () => {
     token = localStorage.getItem('token')
-    $.ajaxSetup({
-        headers: {
-          'token': token
-        }
-      });
+    if (!token){
+        window.location.replace('/login');
+    }
+    else{
+        $.ajaxSetup({
+            headers: {
+              'token': token
+            }
+          });
+    }
+
 };
 
 const getProfile = async () => {
@@ -16,4 +22,9 @@ const getProfile = async () => {
                 user = res;
                 return user;
             })
+};
+
+const onClickedLogOut = () => {
+    localStorage.setItem('token', '');
+    window.location.replace('/login');
 };

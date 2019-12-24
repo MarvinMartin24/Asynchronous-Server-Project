@@ -2,11 +2,16 @@ let token;
 
 const getToken = () => {
     token = localStorage.getItem('token')
-    $.ajaxSetup({
-        headers: {
-          'token': token
-        }
-      });
+    if (!token){
+        window.location.replace('/login');
+    }
+    else{
+        $.ajaxSetup({
+            headers: {
+              'token': token
+            }
+          });
+    }
 };
 
 $("form").on("submit", (e) => {

@@ -14,6 +14,9 @@ router.get('/signup', function (req, res) {
 router.get('/me', function (req, res) {
     res.render(path.join(__dirname + '/profile/', 'profile.ejs'));
 });
+router.get('/me/modify', function (req, res) {
+    res.render(path.join(__dirname + '/modify/', 'modify.ejs'));
+});
 router.get('/me/metrics', function (req, res) {
     res.render(path.join(__dirname + '/metrics/', 'metrics.ejs'));
 });
