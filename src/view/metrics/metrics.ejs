@@ -15,20 +15,20 @@
     </div>
 
     <canvas id="Chart" width="75%" height="500"></canvas>
+    <br>
+    <button class="goToProfile" href="/me" onClick='document.location.href="/me"'> Back </button>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script type="text/javascript" src="/static/metrics/metrics.js"></script>
     <script>
-
         getToken();
         getMetrics();
         addMetrics();
         removeMetrics();
         updateMetrics();
         getPoint();
-
-
     </script>
 </body>
 </html>
