@@ -9,7 +9,6 @@ $("form").on("submit", (e) => {
             password: pwd.value
         })
         .done((res) => {
-            console.log(res);
             if(res.status === "success"){
                 localStorage.setItem('token', res.data.token);
                 alert(res.message);

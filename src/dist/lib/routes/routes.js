@@ -31,6 +31,10 @@ var Routes = /** @class */ (function () {
             .delete(this.userController.validateUser, this.metricController.deleteFirstMetricById);
         app.route('/api/profile/metric/update')
             .put(this.userController.validateUser, this.metricController.updateFirstMetricById);
+        app.route('/api/profile/metric/delete/:id')
+            .delete(this.userController.validateUser, this.metricController.deleteMetricById);
+        app.route('/api/profile/metric/update/:id')
+            .put(this.userController.validateUser, this.metricController.updateMetricById);
     };
     return Routes;
 }());

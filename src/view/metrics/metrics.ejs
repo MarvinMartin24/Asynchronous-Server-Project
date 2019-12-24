@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Metrics</title>
+    <% include ../partials/head %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"/>
+</head>
+<body>
+    <div class='header'>
+        <button class="updateData">Update metrics</button>
+        <button class="addData">Add metrics</button>
+        <button class="removeData">Remove metrics</button>
+        <div id="metricId"></div>
+    </div>
+
+    <canvas id="Chart" width="75%" height="500"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="/static/metrics/metrics.js"></script>
+    <script>
+
+        getToken();
+        getMetrics();
+        addMetrics();
+        removeMetrics();
+        updateMetrics();
+        getPoint();
+
+
+    </script>
+</body>
+</html>

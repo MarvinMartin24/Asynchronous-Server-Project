@@ -18,5 +18,8 @@ router.get('/me', (req, res) => {
     res.render(path.join(__dirname + '/profile/', 'profile.ejs'));
 });
 
+router.get('/me/metrics', (req, res) => {
+    res.render(path.join(__dirname + '/metrics/', 'metrics.ejs'));
+});
 
 export = router;

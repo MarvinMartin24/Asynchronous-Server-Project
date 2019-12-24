@@ -97,32 +97,29 @@ describe('Tests', () => {
                 userLog = res.body;
                 done();
             })
-    });
-    it('Add Metrics', (done) => {
-      chai.request(server)
-          .post('/api/profile/add-metric')
-          .set({ token: token})
-          .end((err, res) => {
-              res.should.have.status(200);
-              res.body.userId.should.be.eq(userLog._id);
-              done();
-          })
-      });
-
-     it('Access Metrics data', (done) => {
-        chai.request(server)
-            .get('/api/profile/metrics')
-            .set({ token: token})
-            .end((err, res) => {
-                res.should.have.status(200);
-                res.body[0].userId.should.be.eq(userLog._id);
-                done();
-            })
         });
+        it('Add Metrics', (done) => {
+          chai.request(server)
+              .post('/api/profile/add-metric')
+              .set({ token: token })
+              .end((err, res) => {
+                  res.should.have.status(200);
+                  res.body.data.metrics.userId.should.be.eq(userLog._id);
+                  done();
+              })
+          });
 
-
-  });
-
-});
+         it('Access Metrics data', (done) => {
+            chai.request(server)
+                .get('/api/profile/metrics')
+                .set({ token: token})
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.data.metrics[0].userId.should.be.eq(userLog._id);
+                    done();
+                })
+            });
+        });
+    });
 
 export = {};
