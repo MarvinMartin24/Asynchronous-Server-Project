@@ -12,26 +12,38 @@ export class Routes {
     public routes(app): void {
 
         // API
-        app.route('/users')
+        app.route('/api/users')
         .get(this.userController.getAllUsers);
 
-        app.route('/profile')
+        app.route('/api/profile')
         .get(this.userController.validateUser, this.userController.getUserbyId);
 
-        app.route('/user/:email')
+        app.route('/api/user/:email')
         .get(this.userController.getUserWithEmail)
 
-        app.route('/user/register')
+        app.route('/api/user/register')
         .post(this.userController.addUser);
 
-        app.route('/user/authenticate')
+        app.route('/api/user/authenticate')
         .post(this.userController.authenticate);
 
-        app.route('/profile/add-metric')
+        app.route('/api/user/delete')
+        .delete(this.userController.validateUser, this.userController.deleteUserById);
+
+        app.route('/api/user/update')
+        .put(this.userController.validateUser, this.userController.updateUserById);
+
+        app.route('/api/profile/add-metric')
         .post(this.userController.validateUser, this.metricController.addMetric);
 
-        app.route('/profile/metrics')
+        app.route('/api/profile/metrics')
         .get(this.userController.validateUser, this.metricController.getMetricsbyId);
+
+        app.route('/api/profile/metric/delete')
+        .delete(this.userController.validateUser, this.metricController.deleteFirstMetricById);
+
+        app.route('/api/profile/metric/update')
+        .put(this.userController.validateUser, this.metricController.updateFirstMetricById);
 
     }
 }
