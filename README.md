@@ -35,7 +35,7 @@ git clone https://github.com/MarvinMartin24/Asynchronous-Server-Project
 
 ### Lunch it !
 
-To lunch our 3 services, go to your file directory and use this:
+To launch our 3 services, go to your file directory and use this:
 ```bash
 docker-compose up -d --build
 ```
