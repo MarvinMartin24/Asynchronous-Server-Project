@@ -1,0 +1,35 @@
+<!<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <% include ../partials/head %>
+    </head>
+    <body class="container">
+        <div id="form">
+          <p>Please Modify your Account</p>
+          <hr/>
+          <form>
+            <div class="form-group" style="width: 200px">
+              <label for="form_firstName">First Name </label>
+              <input id="form_firstName" type="text" name="firstName"/>
+              <label for="form_lastName">Last Name</label>
+              <input id="form_lastName" type="text" name="lastName" />
+              <label for="form_email">Email</label>
+              <input id="form_email" type="email" name="email" />
+              <label for="form_password">Old Password</label>
+              <input id="form_password" type="password" name="password" />
+              <label for="form_password2">New Password</label>
+              <input id="form_password2" type="password" name="password2" />
+            </div>
+            <button class="btn btn-primary btn-block" type="submit" value="Submit">Modify</button>
+          </form>
+        </div>
+        <script src="/static/modify/modify.js"></script>
+        <script>
+            getToken();
+            $.getJSON("/api/profile").done((res) => {
+                $('#form_firstName').text(res.firstName);
+                $('#email').text(res.email);
+                })
+        </script>
+    </body>
+</html>
