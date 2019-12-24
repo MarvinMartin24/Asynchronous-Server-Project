@@ -23,7 +23,7 @@ The purpose of this Project is to create a REST API to implement CRUD (create, r
 
 
 ## Requirements
-Only [Docker](https://docs.docker.com/v17.09/engine/installation/)! That is the magic of docker, you do not need anything else ! Follow the next instructions and everything will work perfectly well !
+Only [Docker](https://docs.docker.com/v17.09/engine/installation/)! That is the magic of docker, you do not need anything else ! Follow the next instructions and everything will work perfectly well ! Just me sure you do not have any existing containers called app, mongo, mongo-express. If it is the case, use `docker stop` and `docker rm
 
 
 ## Get Started
