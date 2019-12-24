@@ -14,6 +14,9 @@
             <button class="btn btn-success" id="show-metrics" href="/me/metrics" onClick='document.location.href="/me/metrics"'>
                 Bring the metrics
             </button>
+            <button class="btn btn-success" id="modify-profile" href="/me/modify" onClick='document.location.href="/me/modify"'>
+                Modify Profile
+            </button>
             <button class="btn btn-success" id="log-out" href="/" onClick='document.location.href="/"'>
                 Log out
             </button>
@@ -25,8 +28,9 @@
     <script>
         getToken();
         $.getJSON("/api/profile").done((res) => {
-            $('#name').append(res.firstName + " " + res.lastName);
-            $('#email').append(res.email);
+            console.log(res)
+            $('#name').text(res.data.user.firstName + " " + res.data.user.lastName);
+            $('#email').text(res.data.user.email);
             })
     </script>
 </html>

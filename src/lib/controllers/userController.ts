@@ -79,10 +79,10 @@ export class UserController{
     public getUserbyId (req: Request, res: Response) {
         User.findById(req.body.user._id, (err, user) => {
             if(err){
-                res.send(err);
+                res.send({status:"error", message: "problem"});
             }
 
-            res.json(user);
+            res.status(200).json({status:"success", message: "User found", data: {user: user}});
         });
     }
 

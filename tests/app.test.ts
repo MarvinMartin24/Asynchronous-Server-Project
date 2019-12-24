@@ -91,10 +91,10 @@ describe('Tests', () => {
             .set({ token: token })
             .end((err, res) => {
                 res.should.have.status(200);
-                res.body.email.should.be.eq(user.email);
-                res.body.lastName.should.be.eq(user.lastName);
-                res.body.firstName.should.be.eq(user.firstName);
-                userLog = res.body;
+                res.body.data.user.email.should.be.eq(user.email);
+                res.body.data.user.lastName.should.be.eq(user.lastName);
+                res.body.data.user.firstName.should.be.eq(user.firstName);
+                userLog = res.body.data.user;
                 done();
             })
         });
